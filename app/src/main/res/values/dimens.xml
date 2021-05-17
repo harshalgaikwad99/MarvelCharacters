@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="card_outer_margin">8dp</dimen>
+    <dimen name="card_character_image_height">200dp</dimen>
+    <dimen name="character_name_text_padding">12dp</dimen>
+
+    <dimen name="character_detail_char_image_height">300dp</dimen>
+    <dimen name="api_error_msg_top_margin">16dp</dimen>
+    <dimen name="api_error_msg_text_size">18sp</dimen>
+
+</resources>

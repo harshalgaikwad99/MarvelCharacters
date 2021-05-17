@@ -1,0 +1,4 @@
+<resources>
+    <string name="app_name">Marvel Characters</string>
+    <string name="api_error_msg">Oops, Something went wrong !</string>
+</resources>

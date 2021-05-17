@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+        <import type="android.view.View" />
+
+        <variable
+            name="viewModel"
+            type="com.globant.marvelcharacters.characterdetail.viewModel.CharacterDetailViewModel" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/bg_application">
+
+        <ProgressBar
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:visibility="@{viewModel.characterDetailState.showLoader?View.VISIBLE:View.GONE}"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <ImageView
+            android:id="@+id/ivError"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_error"
+            app:layout_constraintBottom_toTopOf="@id/tvErrorMsg"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_chainStyle="packed" />
+
+        <TextView
+            android:id="@+id/tvErrorMsg"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/api_error_msg_top_margin"
+            android:text="@string/api_error_msg"
+            android:textSize="@dimen/api_error_msg_text_size"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/ivError" />
+
+        <ImageView
+            android:id="@+id/ivCharacterImage"
+            imageUrl="@{viewModel.characterDetailState.characterDetail.thumbnailUrl}"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/character_detail_char_image_height"
+            android:scaleType="fitXY"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/tvCharacterName"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/black"
+            android:gravity="center_vertical"
+            android:padding="@dimen/character_name_text_padding"
+            android:text="@{viewModel.characterDetailState.characterDetail.name}"
+            android:textColor="@color/white"
+            app:layout_constraintTop_toBottomOf="@+id/ivCharacterImage" />
+
+        <TextView
+            android:id="@+id/tvCharacterDiscription"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_vertical"
+            android:padding="@dimen/character_name_text_padding"
+            android:text="@{viewModel.characterDetailState.characterDetail.description}"
+            android:textColor="@color/black"
+            app:layout_constraintTop_toBottomOf="@+id/tvCharacterName" />
+
+        <androidx.constraintlayout.widget.Group
+            android:id="@+id/groupError"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:visibility="@{viewModel.characterDetailState.showError?View.VISIBLE:View.GONE}"
+            app:constraint_referenced_ids="ivError,tvErrorMsg" />
+
+        <androidx.constraintlayout.widget.Group
+            android:id="@+id/groupCharacterDetails"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:visibility="@{viewModel.characterDetailState.showCharacterDetails?View.VISIBLE:View.GONE}"
+            app:constraint_referenced_ids="tvCharacterName,tvCharacterDiscription,ivCharacterImage" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>
